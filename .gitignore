@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+/build/
+
+/cpp/external/
+
+/outputs/
+
+/models/yoloe-26s-seg.pt
+/models/.yoloe-26s-seg.pt.*
+/mobileclip*.ts
+/.mobileclip*.ts.*
+
+/python/outputs/

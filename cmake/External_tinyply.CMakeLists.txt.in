@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(tinyply-download NONE)
+include(ExternalProject)
+
+ExternalProject_Add(tinyply_external
+        GIT_REPOSITORY https://github.com/ddiakopoulos/tinyply.git
+        GIT_TAG 2.3.2
+        SOURCE_DIR tinyply
+        BINARY_DIR tinyply-build
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ""
+        BUILD_COMMAND make -j8
+        CMAKE_GENERATOR ${gen}
+        CMAKE_ARGS
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.10
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_INSTALL_PREFIX:PATH=${PROJECT_SOURCE_DIR}/cpp/external/
+        )

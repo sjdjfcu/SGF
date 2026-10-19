@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(Json-download NONE)
+include(ExternalProject)
+
+ExternalProject_Add(Json_external
+        GIT_REPOSITORY https://github.com/dropbox/json11.git
+        GIT_TAG v1.0.0
+        SOURCE_DIR Json
+        BINARY_DIR Json-build
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ${CMAKE_COMMAND}
+            -DJSON11_SOURCE_DIR=<SOURCE_DIR>
+            -P ${CMAKE_SOURCE_DIR}/cmake/PatchJson11Cstdint.cmake
+        BUILD_COMMAND make -j8
+        CMAKE_GENERATOR ${gen}
+        CMAKE_ARGS
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.10
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_INSTALL_PREFIX:PATH=${PROJECT_SOURCE_DIR}/cpp/external/
+        )

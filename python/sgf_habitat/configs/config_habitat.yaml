@@ -1,0 +1,205 @@
+# LLM and VLM endpoint
+# SGF_LLM_API_KEY and SGF_LLM_BASE_URL override api_key and base_url
+llm_model: google/gemini-3.1-flash-lite
+vlm_model: google/gemini-3.1-flash-lite
+api_key: ''
+base_url: https://openrouter.ai/api/v1
+
+text_image_goal_nav:
+  runtime_timing: false
+  camera_height: 0.88
+  explore_failed_goal_radius: 1.0
+  explore_min_distance_cells: 24
+  goal_query_limit: 4
+  height: auto
+  hfov: 79.0
+  # first_sentence skips the LLM and uses the first sentence of the goal
+  text_goal_parser_mode: llm
+  image_fine_conf_threshold: 0.25
+  image_goal_min_y_frac: 0.3
+  image_match_every_n_steps: 1
+  image_match_video: false
+  image_match_video_fps: 5.0
+  image_match_video_path: ''
+  image_match_visual_every_n_steps: 0
+  image_match_visual_max_lines: 300
+  image_min_coarse_sim: 0.0
+  image_min_confidence_sum: 12.0
+  image_min_inliers: 14
+  image_min_matches: 40
+  image_min_mean_confidence: 0.35
+  agent_radius: 0.18
+  forward_step_size: 0.25
+  llm_api_key: ''
+  llm_base_url: ''
+  llm_config_path: ${package_root}/configs/config_habitat.yaml
+  llm_model: ''
+  llm_timeout_seconds: 20.0
+  max_depth: 5.0
+  min_depth: 0.5
+  min_target_confidence: 0.2
+  min_target_surfels: 64
+  navigation_free_confirm_hits: 1
+  navigation_floor_support: true
+  navigation_map_depth_stride: 4
+  navigation_map_max_range: 5.0
+  navigation_map_resolution: 0.05
+  navigation_obstacle_confirm_hits: 2
+  navigation_obstacle_free_margin: 0
+  no_image_match_visuals: false
+  planner_clearance_margin_m: 0.05
+  python_executable: python3
+  segment_filter: 512
+  sgf_depth_edge_threshold: -1.0
+  sgf_min_pyr_level: 2
+  stop_verify_api_key: ''
+  stop_verify_base_url: ''
+  stop_verify_config_path: ${package_root}/configs/config_habitat.yaml
+  stop_verify_model: ''
+  stop_verify_timeout_seconds: 20.0
+  stop_verify_yolo_device: auto
+  success_radius: 1.0
+  surfel_min_confidence: 0.3
+  turn_angle: 30.0
+  utility_explorer_goal_likelihood_weight: 150.0
+  video_fps: 15
+  visited_radius_cells: 6
+  width: auto
+  xfeat_root: ${repo_root}/../accelerated_features
+  xfeat_top_k: 8000
+  yolo_class: []
+  yolo_conf_threshold: 0.05
+  yolo_iou_threshold: 0.5
+  yolo_match_iou_threshold: 0.15
+  yolo_match_mode: accurate_mask
+  yolo_model: ${repo_root}/models/yoloe-26s-seg.pt
+  max_steps: 1000
+  device: auto
+  seed: 0
+  visual_pose_clear_stale_goal: false
+  visual_pose_servo: true
+  visual_pose_min_matches: 24
+  visual_pose_min_inliers: 14
+  visual_pose_min_inlier_fraction: 0.25
+  visual_pose_reproj_threshold_px: 10.0
+  visual_pose_min_confidence: 0.25
+  visual_pose_min_agent_distance: 0.25
+  visual_pose_max_agent_distance: 4.0
+  visual_pose_max_height_delta: 1.0
+  visual_pose_allow_stop: true
+  sgf_stop: false
+  text_sgf_stop_min_target_persistence: 0
+  stop_validation: false
+  text_metric_visual_closure: false
+  text_metric_visual_closure_recovery_monotonic_bbox: false
+  text_metric_visual_closure_contextual_closeup_persistence: false
+  text_metric_visual_closure_grounded_detection_confidence_min: 1.01
+  text_metric_visual_closure_contextual_bbox_area_max_fraction: 0.0
+  text_metric_visual_closure_grounded_bbox_center_y_min_fraction: 1.01
+  text_metric_visual_closure_grounded_success_radius_fraction: 0.0
+  text_validated_stop_approach: false
+  text_validated_stop_approach_max_forces: 8
+  text_detection_probe_min_confidence: 0.2
+  # Minimum actions between two verifier queries on one hypothesis
+  text_stop_requery_interval_steps: 8
+  text_target_fatigue: false
+  text_target_fatigue_patience_steps: 60
+  sgf_explore: false
+  sgf_explore_min_goal_distance: 1.5
+  sgf_explore_frontier_min_size: 20
+  sgf_explore_info_gain_weight: 1.0
+  sgf_explore_revisit_weight: 25.0
+  sgf_explore_information_range_scale: 1.0
+  # Frontier objective: rate (value per action), difference, or nearest
+  sgf_explore_utility_form: rate
+  sgf_explore_exchange_rate_scale: 1.0
+  sgf_explore_rotation_cost_weight: 1.0
+  sgf_explore_evidence_verification: false
+  sgf_depth_guard: false
+  sgf_visual_memory: false
+  sgf_visual_memory_max_records: 80
+  sgf_visual_memory_min_similarity: 0.18
+  sgf_visual_memory_frontier_min_score: 0.02
+  sgf_visual_memory_radius: 5.0
+  sgf_visual_memory_cone_deg: 90.0
+  sgf_visual_memory_weight: 8.0
+  sgf_visual_memory_area_weight: 0.35
+  sgf_visual_memory_cost_weight: 0.25
+  panoramic_observation: true
+  panoramic_observation_trigger_scale: 1.0
+  panoramic_observation_searched_extent_interval: false
+  image_vlm_panoramic_query: false
+  image_vlm_panoramic_query_panels: 4
+  image_vlm_foveated_hypothesis: false
+  image_vlm_hypothesis_arrival_sweep: false
+  image_reachable_pursuit: false
+  image_vlm_stop_validation: false
+  image_format: composite
+  image_every_n_steps: 1
+  overwrite_image_dir: false
+  task_mode_defaults:
+    instance-image:
+      sgf_explore_evidence_verification: true
+      visual_pose_clear_stale_goal: true
+      sgf_explore: true
+      sgf_depth_guard: false
+      image_vlm_stop_validation: true
+      sgf_visual_memory: true
+      sgf_visual_memory_min_similarity: 0.70
+      sgf_visual_memory_frontier_min_score: 0.015
+      sgf_visual_memory_radius: 6.0
+      sgf_visual_memory_cone_deg: 110.0
+      sgf_visual_memory_weight: 10.0
+      sgf_visual_memory_cost_weight: 0.2
+      panoramic_observation_trigger_scale: 0.2
+      panoramic_observation_searched_extent_interval: true
+      image_vlm_panoramic_query: true
+      image_vlm_foveated_hypothesis: true
+      image_vlm_hypothesis_arrival_sweep: true
+      image_reachable_pursuit: true
+      image_goal_view_terminal: true
+      sgf_explore_min_goal_distance: 1.2
+      # Fixed exchange rate (value per action) for the difference form
+      sgf_explore_exchange_rate: 157.095
+      endgame_return: true
+    text:
+      sgf_stop: true
+      sgf_explore: true
+      sgf_explore_min_goal_distance: 1.2
+      sgf_explore_exchange_rate: 155.814
+      stop_validation: true
+      text_validated_stop_approach: true
+      text_validated_stop_approach_max_forces: 16
+      text_sgf_stop_min_target_persistence: 2
+      text_metric_visual_closure: true
+      text_metric_visual_closure_recovery_monotonic_bbox: true
+      text_metric_visual_closure_contextual_closeup_persistence: true
+      text_metric_visual_closure_grounded_detection_confidence_min: 0.10
+      text_metric_visual_closure_contextual_bbox_area_max_fraction: 0.10
+      text_metric_visual_closure_grounded_bbox_center_y_min_fraction: 0.75
+      text_metric_visual_closure_grounded_success_radius_fraction: 0.75
+      text_detection_probe: true
+      text_stop_verification_object: node_footprint
+      text_hypothesis_triage: true
+      text_context_guided_exploration: true
+      text_evidence_weighted_target_ranking: true
+      text_query_conditional_labels: true
+      text_detection_instances: true
+      text_detection_instance_min_observations: 2
+      panoramic_observation_searched_extent_interval: true
+      text_target_fatigue: true
+      text_target_fatigue_patience_steps: 60
+      endgame_return: true
+      text_stop_ledger: true
+      # SPRT-inspired bound log((1 - a) / a)
+      text_stop_sequential_error_rate: 0.02
+      text_stop_evidence_rule: sequential
+      text_stop_reobservation: active
+  real_env_task_mode_defaults:
+    # Applied on top of task_mode_defaults for real-robot runs and replay
+    text:
+      max_steps: 500
+      sgf_depth_guard: true
+    instance-image:
+      max_steps: 500
+      sgf_depth_guard: true
