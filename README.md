@@ -1,5 +1,7 @@
 # EviNav
 
+[Preprint (Research Square)](https://www.researchsquare.com/article/rs-11430716/latest)
+
 ## Installation
 
 Install the system dependencies:
